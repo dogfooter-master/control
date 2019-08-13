@@ -155,8 +155,9 @@ func GetConfigVersion() string {
 	return version
 }
 func GetConfigUpdateFileList() UpdateFileList {
-	files := UpdateFileList{}
-	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
+	var files interface{}
+	var file []byte
+	file, _ = ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
 
 	if err := json.Unmarshal(file, &files); err != nil {
 		fmt.Fprintf(os.Stderr, "err=%v\n", err)
@@ -164,7 +165,7 @@ func GetConfigUpdateFileList() UpdateFileList {
 
 	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", files)
 
-	return files
+	return files.(UpdateFileList)
 }
 func GetConfigServerControlHttp() string {
 	return serverHostConfig.Control.HttpHosts

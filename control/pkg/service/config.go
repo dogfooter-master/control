@@ -62,8 +62,15 @@ type RuleConfig struct {
 	Name []string `mapstructure:"name"`
 }
 type UpdateFileObject struct {
-	FileInformation map[string][]string `json:"update_file_list"`
+	File    string `json:"file"`
+	Id      string `json:"id"`
+	Size    int32  `json:"size"`
+	Version string `json:"version"`
 }
+type UpdateFileList struct {
+	UpdateFileList []UpdateFileObject `json:"update_file_list"`
+}
+
 var serverHostConfig ServerConfig
 var clientHostConfig ClientConfig
 var mgoConfig DbConfig
@@ -147,15 +154,15 @@ func GetConfigVersion() string {
 	viper.UnmarshalKey("version", &version)
 	return version
 }
-func GetConfigUpdateFileList() map[string][]string {
-	files := UpdateFileObject{}
+func GetConfigUpdateFileList() UpdateFileList {
+	files := UpdateFileList{}
 	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
 
 	_ = json.Unmarshal([]byte(file), &files)
 
 	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", files)
 
-	return files.FileInformation
+	return files
 }
 func GetConfigServerControlHttp() string {
 	return serverHostConfig.Control.HttpHosts
@@ -263,7 +270,7 @@ func GetConfigWebsocketHosts() string {
 	if len(clientHostConfig.Websocket.Hosts) == 0 {
 		ip, _ := ExternalIP()
 		s := strings.Split(GetConfigServerControlHttp(), ":")
-		return "ws://" + ip + ":" + s[len(s) - 1] + "/ws"
+		return "ws://" + ip + ":" + s[len(s)-1] + "/ws"
 	} else {
 		return clientHostConfig.Websocket.Hosts
 	}

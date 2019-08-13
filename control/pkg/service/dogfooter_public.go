@@ -24,9 +24,8 @@ func (s *DogfooterPublic) Service(ctx context.Context, req Payload) (res Payload
 		res, err = s.ResendCertificationCode(ctx, req)
 	case "UpdatePassword":
 		res, err = s.UpdatePassword(ctx, req)
-	case "SignIn":
-		// TODO: OAuth(우선순위 낮음)
-		res, err = s.SignIn(ctx, req)
+	case "Login":
+		res, err = s.Login(ctx, req)
 	case "GetPlatform":
 		res, err = s.GetPlatform(ctx, req)
 	case "GetSystemType":
@@ -43,6 +42,52 @@ func (s *DogfooterPublic) Service(ctx context.Context, req Payload) (res Payload
 	return
 }
 
+func (s *DogfooterPublic) Login(ctx context.Context, req Payload) (res Payload, err error) {
+	// 로그인 정보 체크
+	if len(req.Account) == 0 {
+		err = errors.New("'account' is mandatory")
+		return
+	}
+	do := UserObject{
+		Login: LoginObject{
+			Account: req.Account,
+		},
+	}
+	// 계정으로 검색
+	if ro, err2 := do.Read(); err2 != nil {
+		err = fmt.Errorf("%v", err2)
+		return
+	} else {
+		// 인증
+		if err = ro.Login.Auth(ro.Id.Hex(), req.Password); err != nil {
+			return
+		}
+		fmt.Fprintf(os.Stderr, "DEBUG: %v\n", ro)
+		if ro.Status == "active" && len(ro.SecretToken.Token) > 0 {
+			do.SecretToken = ro.SecretToken
+		} else {
+			// 인증토큰 발급
+			if err = do.SecretToken.GenerateAccessToken(); err != nil {
+				return
+			}
+		}
+		// 사용자 정보 업데이트
+		do.Id = ro.Id
+		do.Time.Login()
+		if err = do.Update(); err != nil {
+			return
+		}
+		// TODO: 필요한 정보들 더
+		res = Payload{
+			Account:       do.Login.Account,
+			AccessToken:   do.SecretToken.Token,
+			LastLoginTime: ro.Time.LoginTime.Format(time.RFC3339),
+			UserId:        do.Id.Hex(),
+		}
+	}
+
+	return
+}
 func (s *DogfooterPublic) GetUserStatus(ctx context.Context, req Payload) (res Payload, err error) {
 	if len(req.Account) == 0 {
 		err = errors.New("'account' is mandatory")

@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   dogfooter_control:
-    image: dogfooter/dogfooter-control-dev:latest
+    image: dogfooterm/dogfooter-control-dev:latest
     volumes:
       - type: bind
         source: .

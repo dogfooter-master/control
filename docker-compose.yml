@@ -11,4 +11,4 @@ services:
    #ports:
    #- 8800:8081
    #- 8801:8082
-    image: dogfooter/dogfooter-control-dev:latest
+    image: dogfooterm/dogfooter-control-dev:latest

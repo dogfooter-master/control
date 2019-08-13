@@ -6,4 +6,4 @@ if [ 0 -ne 0 ]; then
 fi
 
 ${EXE} build --no-cache
-docker push dogfooter/dogfooter-control-dev:latest
+docker push dogfooterm/dogfooter-control-dev:latest

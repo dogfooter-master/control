@@ -1,4 +1,4 @@
-FROM dogfooter/golang:1.11.5-dev
+FROM dogfooterm/golang:1.11.5-dev
 ENV DOGFOOTER_HOME /go/src
 WORKDIR /go/src/dogfooter-control
 ADD . .

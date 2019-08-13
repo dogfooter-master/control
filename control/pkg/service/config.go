@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/spf13/viper"
 	"io/ioutil"
 	"os"
@@ -151,6 +152,8 @@ func GetConfigUpdateFileList() map[string][]string {
 	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
 
 	_ = json.Unmarshal([]byte(file), &files)
+
+	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", files)
 
 	return files.FileInformation
 }

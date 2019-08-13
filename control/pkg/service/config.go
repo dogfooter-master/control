@@ -157,7 +157,7 @@ func GetConfigVersion() string {
 func GetConfigUpdateFileList() UpdateFileList {
 	var files UpdateFileList
 	var file []byte
-	file, _ = ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
+	file, _ = ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "/config/update_file_list.json")
 
 	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", string(file))
 

@@ -1,0 +1,24 @@
+{
+  "type" : "master",
+  "external" : {
+    "address" : "dogfooter.io",
+    "port": "80"
+  },
+  "db": {
+    "hosts": "dogfooter_system_mongodb:27017",
+    "database": "dogfooter",
+    "username": "",
+    "password": "",
+    "user_collection": "user"
+  },
+  "redis": {
+    "hosts": "dogfooter_redis:6379",
+    "websocket_channel": "ws"
+  },
+  "server": {
+    "control": {
+      "http_hosts": ":9090",
+      "without_file_server": false
+    }
+  }
+}

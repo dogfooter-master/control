@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+  dogfooter_control:
+    build:
+      context: .
+      dockerfile: control/Dockerfile
+    restart: always
+    volumes:
+    - .:/go/src/dogfooter-control
+    container_name: dogfooter_control
+   #ports:
+   #- 8800:8081
+   #- 8801:8082
+    image: dogfooter/dogfooter-control-dev:latest

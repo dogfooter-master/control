@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package pb;
+
+//The Web service definition.
+service Control {
+    rpc Api (ApiRequest) returns (ApiReply);
+    rpc Root (RootRequest) returns (RootReply);
+    rpc File (FileRequest) returns (FileReply);
+}
+
+message ApiRequest {
+}
+
+message ApiReply {
+}
+
+message RootRequest {
+}
+
+message RootReply {
+}
+
+message FileRequest {
+    string method = 1;
+    string id = 2;
+    string access_token = 3;
+    string file = 4;
+    repeated string separators = 5;
+}
+
+message FileReply {
+    string method = 1;
+    string static_file_path = 2;
+}
+

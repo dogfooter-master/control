@@ -1,0 +1,53 @@
+version: "3.2"
+services:
+  redis:
+    image: redis:4.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - deploy_network
+      - dogfooter_network
+    volumes:
+      - type: volume
+        source: dogfooter_redis_volume
+        target: /data
+    ports:
+      - 9092:6379
+  redis_commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+    - REDIS_HOSTS=lazybird.mynetgear.com:dogfooter_redis:6379
+    ports:
+    - "9093:8081"
+    networks:
+      - deploy_network
+      - dogfooter_network
+  system_mongodb:
+    image: 'mongo:3.6'
+    volumes:
+      - type: volume
+        source: dogfooter_system_db_volume
+        target: /data/db
+    ports:
+      - 9097:27017
+    networks:
+      - deploy_network
+      - dogfooter_network
+
+  system_mongodb_express:
+    image: 'mongo-express:latest'
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+      - ME_CONFIG_MONGODB_SERVER=dogfooter_system_mongodb
+    ports:
+      - 9091:8081
+    networks:
+      - deploy_network
+      - dogfooter_network
+networks:
+  deploy_network:
+  dogfooter_network:
+volumes:
+  dogfooter_system_db_volume:
+    external: true
+  dogfooter_redis_volume:
+    external: true

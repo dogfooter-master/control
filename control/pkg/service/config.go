@@ -151,7 +151,7 @@ func GetConfigUpdateFileList() map[string][]string {
 	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
 
 	_ = json.Unmarshal([]byte(file), &files)
-	
+
 	return files.FileInformation
 }
 func GetConfigServerControlHttp() string {

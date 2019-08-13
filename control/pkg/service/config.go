@@ -158,7 +158,9 @@ func GetConfigUpdateFileList() UpdateFileList {
 	files := UpdateFileList{}
 	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
 
-	_ = json.Unmarshal(file, &files)
+	if err := json.Unmarshal(file, &files); err != nil {
+		fmt.Fprintf(os.Stderr, "err=%v\n", err)
+	}
 
 	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", files)
 

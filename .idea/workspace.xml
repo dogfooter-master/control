@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c9ebd44-cb2b-47c4-b722-d5d628d4dd25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/update_file_list.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/update_file_list.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/pkg/service/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+            <state relative-caret-position="375">
+              <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+            <state relative-caret-position="-537">
+              <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -87,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/io.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
+            <state relative-caret-position="-173">
               <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
             </state>
           </provider>
@@ -120,12 +120,12 @@
       <find>SignUp</find>
       <find>GetVersion</find>
       <find>GetPoint</find>
-      <find>Point</find>
-      <find>GetUpdateFileList</find>
       <find>GetConfigUpdateFileList</find>
       <find>UpdatePassword</find>
       <find>update_file_list</find>
       <find>UpdateFileObject</find>
+      <find>Point</find>
+      <find>GetUpdateFileList</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -159,12 +159,12 @@
         <option value="$PROJECT_DIR$/control/pkg/service/grpc.go" />
         <option value="$PROJECT_DIR$/control/pkg/service/user.go" />
         <option value="$PROJECT_DIR$/control/pkg/service/io.go" />
-        <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" />
         <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" />
         <option value="$PROJECT_DIR$/config/update_file_list.json.go" />
         <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/config/update_file_list.json" />
         <option value="$PROJECT_DIR$/control/pkg/service/config.go" />
+        <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" />
       </list>
     </option>
   </component>
@@ -381,13 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/control/pkg/service/io.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_public.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -396,13 +389,6 @@
             <element signature="n#!!block;n#GetUserStatus#0" />
             <element signature="n#!!block;n#SignIn#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -420,6 +406,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/control/pkg/service/io.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-173">
+          <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/update_file_list.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -429,8 +422,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+        <state relative-caret-position="-537">
+          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
         </state>
       </provider>
     </entry>

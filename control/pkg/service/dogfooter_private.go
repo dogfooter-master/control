@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
+	"strconv"
 )
 
 type DogfooterPrivate struct {
@@ -39,8 +40,16 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 	return
 }
 func (s *DogfooterPrivate) GetUpdateFileList(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	var updateFileList = make(map[string][]string)
+	for _, e := range GetConfigUpdateFileList().UpdateFileList {
+		updateFileList[e.File] = []string{
+			e.Id,
+			strconv.Itoa(e.Size),
+			e.Version,
+		}
+	}
 	res = Payload{
-		UpdateFileList: GetConfigUpdateFileList(),
+		UpdateFileList: updateFileList,
 	}
 	return
 }

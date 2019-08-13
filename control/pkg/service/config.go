@@ -58,7 +58,9 @@ type ExternalConfig struct {
 type RuleConfig struct {
 	Name []string `mapstructure:"name"`
 }
-
+type UpdateFileObject struct {
+	FileInformation map[string][]string
+}
 var serverHostConfig ServerConfig
 var clientHostConfig ClientConfig
 var mgoConfig DbConfig
@@ -111,8 +113,6 @@ func init() {
 	viper.UnmarshalKey("external", &externalConfig)
 	viper.GetStringMap("rule")
 	viper.UnmarshalKey("rule", &ruleConfig)
-	viper.GetStringMap("login_point")
-	viper.UnmarshalKey("login_point", &loginPoint)
 	envOs = viper.GetString("platform")
 	if len(envOs) == 0 {
 		envOs = "linux"
@@ -133,8 +133,22 @@ func LoadConfig() (err error) {
 	}
 	return
 }
-func GetLoginPoint() int32 {
+func GetConfigLoginPoint() int32 {
+	viper.GetStringMap("login_point")
+	viper.UnmarshalKey("login_point", &loginPoint)
 	return loginPoint
+}
+func GetConfigVersion() string {
+	var version string
+	viper.GetStringMap("version")
+	viper.UnmarshalKey("version", &version)
+	return version
+}
+func GetConfigUpdateFileList() map[string][]string {
+	var files UpdateFileObject
+	viper.GetStringMap("update_file_list")
+	viper.UnmarshalKey("update_file_list", &files)
+	return files.FileInformation
 }
 func GetConfigServerControlHttp() string {
 	return serverHostConfig.Control.HttpHosts

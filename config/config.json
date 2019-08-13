@@ -21,5 +21,11 @@
       "http_hosts": ":8080",
       "without_file_server": false
     }
+  },
+  "version" : "3.0.0",
+  "update_file_list" :{
+    "dogfooterbot.exe" : [ "1SGqcAU3k6RYLFuCmmVXzH3a1OVxx3sOE", "7255", "v2.1.2 Fix#3" ],
+    "tera.lyb" : [ "1916bwKU73i3pv90ndT-J18vOcSiFWaVj", "17766", "v2.1.2 Fix#2" ],
+    "blackdesert.lyb" : [ "1gZ0aZh1YlHGE59p5TVfp813lB-JLLf1F", "8079", "v2.1.2 Fix#3" ]
   }
 }

@@ -28,9 +28,25 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 		res, err = s.GetLoginPoint(ctx, req, user)
 	case "GetChatId":
 		res, err = s.GetChatId(ctx, req, user)
+	case "GetVersion":
+		res, err = s.GetVersion(ctx, req, user)
+	case "GetUpdateFileList":
+		res, err = s.GetUpdateFileList(ctx, req, user)
 
 	default:
 		err = fmt.Errorf("unknown service '%v' in category: '%v'", req.Service, req.Category)
+	}
+	return
+}
+func (s *DogfooterPrivate) GetUpdateFileList(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		UpdateFileList: GetConfigUpdateFileList(),
+	}
+	return
+}
+func (s *DogfooterPrivate) GetVersion(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		Version: GetConfigVersion(),
 	}
 	return
 }
@@ -42,7 +58,7 @@ func (s *DogfooterPrivate) GetChatId(ctx context.Context, req Payload, do UserOb
 }
 func (s *DogfooterPrivate) GetLoginPoint(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
 	res = Payload{
-		Point: GetLoginPoint(),
+		Point: GetConfigLoginPoint(),
 	}
 	return
 }

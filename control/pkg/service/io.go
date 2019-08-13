@@ -66,7 +66,6 @@ type Payload struct {
 	DateNumber          int32                       `json:"date_number,omitempty"`
 	ImageNumber         int32                       `json:"image_number,omitempty"`
 	PatientNumber       int32                       `json:"patient_number,omitempty"`
-	Point               int32                       `json:"point,omitempty"`
 	Ethnicity           string                      `json:"ethnicity,omitempty"`
 	Country             string                      `json:"country,omitempty"`
 	Skin                string                      `json:"skin,omitempty"`
@@ -90,6 +89,9 @@ type Payload struct {
 	LiveId              string                      `json:"live_id,omitempty"`
 	Three               *ThreeObject                `json:"three,omitempty"`
 	ChatId              string                      `json:"chat_id,omitempty"`
+	Point               int32                       `json:"point,omitempty"`
+	Version             string                      `json:"version,omitempty"`
+	UpdateFileList      map[string][]string         `json:"update_file_list,omitempty"`
 }
 
 func (p *Payload) Debug(prefix string) {

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c9ebd44-cb2b-47c4-b722-d5d628d4dd25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/update_file_list.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/update_file_list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/pkg/service/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+            <state relative-caret-position="627">
+              <caret line="41" column="50" lean-forward="true" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -430,8 +428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        <state relative-caret-position="627">
+          <caret line="41" column="50" lean-forward="true" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
         </state>
       </provider>
     </entry>

@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
-	"strconv"
 )
 
 type DogfooterPrivate struct {

@@ -1,6 +1,5 @@
 {
   "type" : "master",
-  "login_point" : 100,
   "external" : {
     "address" : "dogfooter.io",
     "port": "80"
@@ -23,5 +22,17 @@
     }
   },
   "version" : "3.0.0",
-  "dropbox_access_token" : "-40VxdRAEqAAAAAAAAAAGMtBuUhrzMVthu0X3kJvWCc8oAk2XQNiTOfX1E81tHwy"
+  "ip_free_point" : "100000",
+  "dogfootermacro_point" : "1000",
+  "lybcfg_point" : "1000",
+  "ip_check_period" : "1800",
+  "ads_interval" : "180000",
+  "docs_url" : "https://goo.gl/KR4tDu",
+  "notice_count" : "6",
+  "notice_index" : "1",
+  "dropbox_access_token" : "-40VxdRAEqAAAAAAAAAAGMtBuUhrzMVthu0X3kJvWCc8oAk2XQNiTOfX1E81tHwy",
+  "lybcfg" : "https://www.dropbox.com/s/z9kn27fbcrsvnmh/lyb.cfg.merge?dl=1",
+  "token" : "503953181:AAGRwwcUKa9tuagCHnwRCaKO_mi_jBAcLlU",
+  "login_point" : 100,
+  "telegram_point" : "400"
 }

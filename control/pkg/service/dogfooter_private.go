@@ -42,7 +42,6 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 	return
 }
 func (s *DogfooterPrivate) GetElement(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
-
 	res = Payload{
 		Value: GetConfigElementValue(req.Element),
 	}

@@ -146,6 +146,7 @@ func LoadConfig() (err error) {
 func GetConfigElementValue(element string) (value string) {
 	viper.GetStringMap(element)
 	viper.UnmarshalKey(element, &value)
+	return 
 }
 func GetConfigLoginPoint() int32 {
 	viper.GetStringMap("login_point")
@@ -162,8 +163,6 @@ func GetConfigUpdateFileList() UpdateFileList {
 	var files UpdateFileList
 	var file []byte
 	file, _ = ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "/dogfooter-control/config/update_file_list.json")
-
-	fmt.Fprintf(os.Stderr, "DEBUG: %#v\n", string(file))
 
 	if err := json.Unmarshal(file, &files); err != nil {
 		fmt.Fprintf(os.Stderr, "err=%v\n", err)

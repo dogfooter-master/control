@@ -60,7 +60,7 @@ type RuleConfig struct {
 	Name []string `mapstructure:"name"`
 }
 type UpdateFileObject struct {
-	FileInformation map[string][]string
+	FileInformation map[string][]string `mapstructure:"update_file_list"`
 }
 var serverHostConfig ServerConfig
 var clientHostConfig ClientConfig

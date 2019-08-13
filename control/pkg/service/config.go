@@ -1,8 +1,9 @@
 package service
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/spf13/viper"
+	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -60,7 +61,7 @@ type RuleConfig struct {
 	Name []string `mapstructure:"name"`
 }
 type UpdateFileObject struct {
-	FileInformation map[string][]string `mapstructure:"update_file_list"`
+	FileInformation map[string][]string `json:"update_file_list"`
 }
 var serverHostConfig ServerConfig
 var clientHostConfig ClientConfig
@@ -146,10 +147,11 @@ func GetConfigVersion() string {
 	return version
 }
 func GetConfigUpdateFileList() map[string][]string {
-	var files UpdateFileObject
-	viper.GetStringMap("update_file_list")
-	viper.UnmarshalKey("update_file_list", &files)
-	fmt.Fprintf(os.Stderr, "DEBUG: %v\n", files)
+	files := UpdateFileObject{}
+	file, _ := ioutil.ReadFile(os.Getenv("DOGFOOTER_HOME") + "config/update_file_list.json")
+
+	_ = json.Unmarshal([]byte(file), &files)
+	
 	return files.FileInformation
 }
 func GetConfigServerControlHttp() string {

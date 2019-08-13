@@ -64,7 +64,7 @@ type RuleConfig struct {
 type UpdateFileObject struct {
 	File    string `json:"file"`
 	Id      string `json:"id"`
-	Size    string    `json:"size"`
+	Size    int    `json:"size"`
 	Version string `json:"version"`
 }
 type UpdateFileList struct {

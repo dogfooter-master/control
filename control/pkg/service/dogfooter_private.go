@@ -33,9 +33,18 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 		res, err = s.GetVersion(ctx, req, user)
 	case "GetUpdateFileList":
 		res, err = s.GetUpdateFileList(ctx, req, user)
+	case "GetElement":
+		res, err = s.GetElement(ctx, req, user)
 
 	default:
 		err = fmt.Errorf("unknown service '%v' in category: '%v'", req.Service, req.Category)
+	}
+	return
+}
+func (s *DogfooterPrivate) GetElement(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+
+	res = Payload{
+		Value: GetConfigElementValue(req.Element),
 	}
 	return
 }

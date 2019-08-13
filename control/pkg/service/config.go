@@ -143,6 +143,10 @@ func LoadConfig() (err error) {
 	}
 	return
 }
+func GetConfigElementValue(element string) (value string) {
+	viper.GetStringMap(element)
+	viper.UnmarshalKey(element, &value)
+}
 func GetConfigLoginPoint() int32 {
 	viper.GetStringMap("login_point")
 	viper.UnmarshalKey("login_point", &loginPoint)

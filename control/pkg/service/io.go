@@ -92,6 +92,8 @@ type Payload struct {
 	Point               int32                       `json:"point,omitempty"`
 	Version             string                      `json:"version,omitempty"`
 	UpdateFileList      map[string][]string         `json:"update_file_list,omitempty"`
+	Element             string                      `json:"element,omitempty"`
+	Value               string                      `json:"value,omitempty"`
 }
 
 func (p *Payload) Debug(prefix string) {

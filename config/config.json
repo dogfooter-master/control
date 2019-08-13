@@ -22,5 +22,6 @@
       "without_file_server": false
     }
   },
-  "version" : "3.0.0"
+  "version" : "3.0.0",
+  "dropbox_access_token" : "-40VxdRAEqAAAAAAAAAAGMtBuUhrzMVthu0X3kJvWCc8oAk2XQNiTOfX1E81tHwy"
 }

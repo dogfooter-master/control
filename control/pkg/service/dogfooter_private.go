@@ -44,7 +44,7 @@ func (s *DogfooterPrivate) GetUpdateFileList(ctx context.Context, req Payload, d
 	for _, e := range GetConfigUpdateFileList().UpdateFileList {
 		updateFileList[e.File] = []string{
 			e.Id,
-			strconv.Itoa(e.Size),
+			e.Size,
 			e.Version,
 		}
 	}

@@ -17,7 +17,7 @@
   },
   "server": {
     "control": {
-      "http_hosts": ":9090",
+      "http_hosts": ":8080",
       "without_file_server": false
     }
   }

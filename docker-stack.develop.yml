@@ -17,6 +17,6 @@ services:
     networks:
       - dogfooter_network
     ports:
-      - 1090:9090
+      - 8090:8080
 networks:
   dogfooter_network:

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c9ebd44-cb2b-47c4-b722-d5d628d4dd25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/control/pkg/service/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/config.go" afterDir="false" />
-    </list>
+    <list default="true" id="9c9ebd44-cb2b-47c4-b722-d5d628d4dd25" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+            <state relative-caret-position="487">
+              <caret line="161" column="35" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -78,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/config/update_file_list.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -162,8 +160,8 @@
         <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" />
         <option value="$PROJECT_DIR$/config/update_file_list.json.go" />
         <option value="$PROJECT_DIR$/config/config.json" />
-        <option value="$PROJECT_DIR$/config/update_file_list.json" />
         <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" />
+        <option value="$PROJECT_DIR$/config/update_file_list.json" />
         <option value="$PROJECT_DIR$/control/pkg/service/config.go" />
       </list>
     </option>
@@ -423,14 +421,14 @@
     <entry file="file://$PROJECT_DIR$/config/update_file_list.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+        <state relative-caret-position="487">
+          <caret line="161" column="35" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
         </state>
       </provider>
     </entry>

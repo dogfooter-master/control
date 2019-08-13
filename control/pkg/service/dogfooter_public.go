@@ -62,7 +62,6 @@ func (s *DogfooterPublic) Login(ctx context.Context, req Payload) (res Payload, 
 		if err = ro.Login.Auth(ro.Id.Hex(), req.Password); err != nil {
 			return
 		}
-		fmt.Fprintf(os.Stderr, "DEBUG: %v\n", ro)
 		if ro.Status == "active" && len(ro.SecretToken.Token) > 0 {
 			do.SecretToken = ro.SecretToken
 		} else {

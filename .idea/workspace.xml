@@ -4,8 +4,7 @@
     <list default="true" id="9c9ebd44-cb2b-47c4-b722-d5d628d4dd25" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/config/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/control/pkg/service/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/pkg/service/io.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/io.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" beforeDir="false" afterPath="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_public.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="302">
+              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#GetUserStatus#0" />
                 <element signature="n#!!block;n#SignIn#0" />
@@ -43,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+            <state relative-caret-position="513">
+              <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -62,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+            <state relative-caret-position="475">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -71,8 +70,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="135" column="14" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+            <state relative-caret-position="589">
+              <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -114,9 +113,10 @@
       <find>develop_network</find>
       <find>SignUp</find>
       <find>GetVersion</find>
-      <find>UpdatePassword</find>
-      <find>Point</find>
       <find>GetPoint</find>
+      <find>Point</find>
+      <find>UpdatePassword</find>
+      <find>update_file_list</find>
       <find>GetUpdateFileList</find>
     </findStrings>
     <replaceStrings>
@@ -149,11 +149,11 @@
         <option value="$PROJECT_DIR$/docker-stack.develop.yml" />
         <option value="$PROJECT_DIR$/db/docker-stack.yml" />
         <option value="$PROJECT_DIR$/control/pkg/service/grpc.go" />
-        <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" />
         <option value="$PROJECT_DIR$/control/pkg/service/user.go" />
-        <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/control/pkg/service/io.go" />
         <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_private.go" />
+        <option value="$PROJECT_DIR$/control/pkg/service/dogfooter_public.go" />
+        <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/control/pkg/service/config.go" />
       </list>
     </option>
@@ -369,24 +369,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_public.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!block;n#GetUserStatus#0" />
-            <element signature="n#!!block;n#SignIn#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/io.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -394,17 +376,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_public.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#GetUserStatus#0" />
+            <element signature="n#!!block;n#SignIn#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/dogfooter_private.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+        <state relative-caret-position="513">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/control/pkg/service/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="135" column="14" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+        <state relative-caret-position="589">
+          <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
         </state>
       </provider>
     </entry>

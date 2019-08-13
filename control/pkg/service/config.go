@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	"os"
 	"strings"
@@ -148,6 +149,7 @@ func GetConfigUpdateFileList() map[string][]string {
 	var files UpdateFileObject
 	viper.GetStringMap("update_file_list")
 	viper.UnmarshalKey("update_file_list", &files)
+	fmt.Fprintf(os.Stderr, "DEBUG: %v\n", files)
 	return files.FileInformation
 }
 func GetConfigServerControlHttp() string {

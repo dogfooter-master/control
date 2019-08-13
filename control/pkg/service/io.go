@@ -66,6 +66,7 @@ type Payload struct {
 	DateNumber          int32                       `json:"date_number,omitempty"`
 	ImageNumber         int32                       `json:"image_number,omitempty"`
 	PatientNumber       int32                       `json:"patient_number,omitempty"`
+	Point               int32                       `json:"point,omitempty"`
 	Ethnicity           string                      `json:"ethnicity,omitempty"`
 	Country             string                      `json:"country,omitempty"`
 	Skin                string                      `json:"skin,omitempty"`

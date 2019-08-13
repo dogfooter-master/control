@@ -22,84 +22,28 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 	switch req.Service {
 	case "UpdateUserInformation":
 		res, err = s.UpdateUserInformation(ctx, req, user)
-	case "UpdateAccessToken":
-		res, err = s.UpdateAccessToken(ctx, req, user)
-	case "PrepareAvatar":
-		res, err = s.PrepareAvatar(ctx, req, user)
-	case "GetAvatarUri":
-		res, err = s.GetAvatarUri(ctx, req, user)
-	case "CreateHospital":
-		res, err = s.CreateHospital(ctx, req, user)
-	case "SignUpComplete":
-		res, err = s.SignUpComplete(ctx, req, user)
-	case "GetUserInformation":
-		res, err = s.GetUserInformation(ctx, req, user)
-	case "ListEthnicity":
-		res, err = s.ListEthnicity(ctx, req, user)
-	case "AddEthnicity":
-		res, err = s.AddEthnicity(ctx, req, user)
-	case "DelEthnicity":
-		res, err = s.DelEthnicity(ctx, req, user)
-	case "SetDefaultEthnicity":
-		res, err = s.SetDefaultEthnicity(ctx, req, user)
-	case "ListCountry":
-		res, err = s.ListCountry(ctx, req, user)
-	case "AddCountry":
-		res, err = s.AddCountry(ctx, req, user)
-	case "DelCountry":
-		res, err = s.DelCountry(ctx, req, user)
-	case "SetDefaultCountry":
-		res, err = s.SetDefaultCountry(ctx, req, user)
-	case "ListSkin":
-		res, err = s.ListSkin(ctx, req, user)
-	case "AddSkin":
-		res, err = s.AddSkin(ctx, req, user)
-	case "DelSkin":
-		res, err = s.DelSkin(ctx, req, user)
-	case "SetDefaultSkin":
-		res, err = s.SetDefaultSkin(ctx, req, user)
-	case "ListDisease":
-		res, err = s.ListDisease(ctx, req, user)
-	case "AddDisease":
-		res, err = s.AddDisease(ctx, req, user)
-	case "DelDisease":
-		res, err = s.DelDisease(ctx, req, user)
-	case "SetDefaultDisease":
-		res, err = s.SetDefaultDisease(ctx, req, user)
-	case "ListLocation":
-		res, err = s.ListLocation(ctx, req, user)
-	case "AddLocation":
-		res, err = s.AddLocation(ctx, req, user)
-	case "DelLocation":
-		res, err = s.DelLocation(ctx, req, user)
-	case "SetDefaultLocation":
-		res, err = s.SetDefaultLocation(ctx, req, user)
-	case "ListGender":
-		res, err = s.ListGender(ctx, req, user)
-	case "AddGender":
-		res, err = s.AddGender(ctx, req, user)
-	case "DelGender":
-		res, err = s.DelGender(ctx, req, user)
-	case "SetDefaultGender":
-		res, err = s.SetDefaultGender(ctx, req, user)
-	case "ListTag":
-		res, err = s.ListTag(ctx, req, user)
-	case "AddTag":
-		res, err = s.AddTag(ctx, req, user)
-	case "DelTag":
-		res, err = s.DelTag(ctx, req, user)
-	case "SetDefaultTag":
-		res, err = s.SetDefaultTag(ctx, req, user)
-	case "GetWebsocketHost":
-		res, err = s.GetWebsocketHost(ctx, req, user)
-	case "SignOut":
+	case "GetPoint":
+		res, err = s.GetPoint(ctx, req, user)
+	case "GetLoginPoint":
+		res, err = s.GetLoginPoint(ctx, req, user)
 
 	default:
 		err = fmt.Errorf("unknown service '%v' in category: '%v'", req.Service, req.Category)
 	}
 	return
 }
-
+func (s *DogfooterPrivate) GetLoginPoint(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		Point: GetLoginPoint(),
+	}
+	return
+}
+func (s *DogfooterPrivate) GetPoint(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		Point: do.Point,
+	}
+	return
+}
 func (s *DogfooterPrivate) GetWebsocketHost(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
 	res = Payload{
 		Host: GetConfigWebsocketHosts(),
@@ -437,11 +381,8 @@ func (s *DogfooterPrivate) CreateHospital(ctx context.Context, req Payload, do U
 	return
 }
 func (s *DogfooterPrivate) UpdateUserInformation(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
-	do.Name = req.Name
 	do.Nickname = req.Nickname
-	if len(req.HospitalId) > 0 && bson.IsObjectIdHex(req.HospitalId) == true {
-		do.Relation.HospitalId = bson.ObjectIdHex(req.HospitalId)
-	}
+
 	if do.Status == "information" {
 		do.Status = "active"
 	}
@@ -450,9 +391,6 @@ func (s *DogfooterPrivate) UpdateUserInformation(ctx context.Context, req Payloa
 	}
 	res = Payload{
 		Account: do.Login.Account,
-	}
-	if len(req.HospitalId) > 0 {
-		res.HospitalId = req.HospitalId
 	}
 	return
 }

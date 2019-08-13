@@ -76,6 +76,7 @@ var systemType string
 var externalConfig ExternalConfig
 var ruleConfig RuleConfig
 var withoutFileServer bool
+var loginPoint int32
 
 func init() {
 	if err := LoadConfig(); err != nil {
@@ -110,6 +111,8 @@ func init() {
 	viper.UnmarshalKey("external", &externalConfig)
 	viper.GetStringMap("rule")
 	viper.UnmarshalKey("rule", &ruleConfig)
+	viper.GetStringMap("login_point")
+	viper.UnmarshalKey("login_point", &loginPoint)
 	envOs = viper.GetString("platform")
 	if len(envOs) == 0 {
 		envOs = "linux"
@@ -129,6 +132,9 @@ func LoadConfig() (err error) {
 		return
 	}
 	return
+}
+func GetLoginPoint() int32 {
+	return loginPoint
 }
 func GetConfigServerControlHttp() string {
 	return serverHostConfig.Control.HttpHosts

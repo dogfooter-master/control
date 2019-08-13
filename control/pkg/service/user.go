@@ -8,17 +8,18 @@ import (
 )
 
 type UserObject struct {
-	Id               bson.ObjectId                `bson:"_id,omitempty"`
-	Name             string                       `bson:"name,omitempty"`
-	Nickname         string                       `bson:"nickname,omitempty"`
-	Login            LoginObject                  `bson:"login,omitempty"`
-	Relation         RelationObject               `bson:"relation,omitempty"`
-	SecretToken      SecretTokenObject            `bson:"secret_token,omitempty"`
-	Client           ClientObject                 `bson:"client,omitempty"`
-	Avatar           FileObject                   `bson:"avatar,omitempty"`
-	Status           string                       `bson:"status,omitempty"`
-	Time             TimeLogObject                `bson:"time,omitempty"`
-	CustomConfig     CustomConfigObject           `bson:"custom_config,omitempty"`
+	Id           bson.ObjectId      `bson:"_id,omitempty"`
+	Name         string             `bson:"name,omitempty"`
+	Nickname     string             `bson:"nickname,omitempty"`
+	Login        LoginObject        `bson:"login,omitempty"`
+	Relation     RelationObject     `bson:"relation,omitempty"`
+	SecretToken  SecretTokenObject  `bson:"secret_token,omitempty"`
+	Client       ClientObject       `bson:"client,omitempty"`
+	Avatar       FileObject         `bson:"avatar,omitempty"`
+	Status       string             `bson:"status,omitempty"`
+	Point        int32              `bson:"point,omitempty"`
+	Time         TimeLogObject      `bson:"time,omitempty"`
+	CustomConfig CustomConfigObject `bson:"custom_config,omitempty"`
 }
 
 func (d *UserObject) Create() (err error) {
@@ -108,12 +109,6 @@ func (d *UserObject) Update() (err error) {
 	}
 	if d.Time.LoginTime.IsZero() == false {
 		updateBson["time.login_time"] = d.Time.LoginTime
-	}
-	if len(d.Relation.HospitalId) > 0 {
-		updateBson["relation.hospital_id"] = d.Relation.HospitalId
-	}
-	if len(d.Relation.PcUserId) > 0 {
-		updateBson["relation.pc_user_id"] = d.Relation.PcUserId
 	}
 
 	d.Time.Update()

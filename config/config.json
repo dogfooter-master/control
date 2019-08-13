@@ -1,5 +1,6 @@
 {
   "type" : "master",
+  "login_point" : 100,
   "external" : {
     "address" : "dogfooter.io",
     "port": "80"

@@ -89,6 +89,7 @@ type Payload struct {
 	Host                string                      `json:"host,omitempty"`
 	LiveId              string                      `json:"live_id,omitempty"`
 	Three               *ThreeObject                `json:"three,omitempty"`
+	ChatId              string                      `json:"chat_id,omitempty"`
 }
 
 func (p *Payload) Debug(prefix string) {

@@ -26,9 +26,17 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 		res, err = s.GetPoint(ctx, req, user)
 	case "GetLoginPoint":
 		res, err = s.GetLoginPoint(ctx, req, user)
+	case "GetChatId":
+		res, err = s.GetChatId(ctx, req, user)
 
 	default:
 		err = fmt.Errorf("unknown service '%v' in category: '%v'", req.Service, req.Category)
+	}
+	return
+}
+func (s *DogfooterPrivate) GetChatId(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		ChatId: do.ChatId,
 	}
 	return
 }

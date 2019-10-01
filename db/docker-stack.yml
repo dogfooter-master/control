@@ -5,14 +5,14 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - type: volume
-        source: dogfooter_redis_volume
+        source: pawpad_redis_volume
         target: /data
     ports:
       - 9092:6379
   redis_commander:
     image: rediscommander/redis-commander:latest
     environment:
-    - REDIS_HOSTS=dogfooter_redis:dogfooter_redis:6379
+    - REDIS_HOSTS=pawpad_redis:pawpad_redis:6379
     ports:
     - 9003:8081
   system_mongodb:
@@ -22,7 +22,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=hotice1234
     volumes:
       - type: volume
-        source: dogfooter_system_db_volume
+        source: pawpad_system_db_volume
         target: /data/db
   system_mongodb_express:
     image: 'mongo-express:latest'
@@ -30,13 +30,13 @@ services:
       - ME_CONFIG_BASICAUTH_USERNAME=admin
       - ME_CONFIG_BASICAUTH_PASSWORD=hotice1234
       - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
-      - ME_CONFIG_MONGODB_SERVER=dogfooter_system_mongodb
+      - ME_CONFIG_MONGODB_SERVER=pawpad_system_mongodb
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=hotice1234
     ports:
       - 9001:8081
 volumes:
-  dogfooter_system_db_volume:
+  pawpad_system_db_volume:
     external: true
-  dogfooter_redis_volume:
+  pawpad_redis_volume:
     external: true

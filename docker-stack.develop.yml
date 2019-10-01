@@ -14,9 +14,5 @@ services:
         limits:
          cpus: "1.0"
          memory: 1000M
-    networks:
-      - dogfooter_network
     ports:
       - 8090:8080
-networks:
-  dogfooter_network:

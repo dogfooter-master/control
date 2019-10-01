@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"gopkg.in/mgo.v2"
+	"os"
 	"time"
 )
 
@@ -32,19 +33,31 @@ func init() {
 		}
 	}()
 }
+func ConnectionCheck() {
+	if err := mySqlDB.Ping(); err != nil {
+		fmt.Fprintf(os.Stderr, "this message is test. please remove... mysql connection is lost\n")
+	}
+}
 
 func initializeMongo() (err error) {
-	info := &mgo.DialInfo{
-		Addrs:    []string{mgoConfig.Hosts},
-		Timeout:  60 * time.Second,
-		Database: mgoConfig.Database,
-		Username: mgoConfig.Username,
-		Password: mgoConfig.Password,
-	}
-
-	mgoSession, err = mgo.DialWithInfo(info)
+	//info := &mgo.DialInfo{
+	//	Addrs:    []string{mgoConfig.Hosts},
+	//	Timeout:  60 * time.Second,
+	//	Database: mgoConfig.Database,
+	//	Username: mgoConfig.Username,
+	//	Password: mgoConfig.Password,
+	//}
+	//
+	//mgoSession, err = mgo.DialWithInfo(info)
+	//if err != nil {
+	//	err = fmt.Errorf("fail to DialWithInfo(%#v) error - %v", info, err)
+	//	return
+	//}
+	
+	url := "mongodb://" + mgoConfig.Username + ":" + mgoConfig.Password + "@" + mgoConfig.Hosts + "/" + mgoConfig.Database + "?authSource=admin"
+	mgoSession, err = mgo.Dial(url)
 	if err != nil {
-		err = fmt.Errorf("fail to DialWithInfo(%#v) error - %v", info, err)
+		err = fmt.Errorf("fail to Dial(%#v) error - %v", url, err)
 		return
 	}
 

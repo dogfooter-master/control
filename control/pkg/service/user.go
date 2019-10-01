@@ -127,6 +127,31 @@ func (d *UserObject) Update() (err error) {
 
 	return
 }
+func (d *UserObject) UpdateChatId() (err error) {
+	collection := mgoSession.DB(mgoConfig.Database).C(mgoConfig.UserCollection)
+
+	//object := UserObject{
+	//	Id: d.Id,
+	//}
+	//err = collection.Find(bson.M{"_id": object.Id}).One(&object)
+	//if err != nil {
+	//	return
+	//}
+
+	updateBson := bson.M{}
+
+	updateBson["chat_id"] = d.ChatId
+
+	d.Time.Update()
+	updateBson["time.update_time"] = d.Time.UpdateTime
+
+	err = collection.Update(bson.M{"_id": d.Id}, bson.M{"$set": updateBson})
+	if err != nil {
+		return
+	}
+
+	return
+}
 func (d *UserObject) UpdatePcUser() (err error) {
 	collection := mgoSession.DB(mgoConfig.Database).C(mgoConfig.UserCollection)
 	updateBson := bson.M{}

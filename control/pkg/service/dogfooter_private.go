@@ -29,6 +29,8 @@ func (s *DogfooterPrivate) Service(ctx context.Context, req Payload) (res Payloa
 		res, err = s.GetLoginPoint(ctx, req, user)
 	case "GetChatId":
 		res, err = s.GetChatId(ctx, req, user)
+	case "UpdateChatId":
+		res, err = s.UpdateChatId(ctx, req, user)
 	case "GetVersion":
 		res, err = s.GetVersion(ctx, req, user)
 	case "GetUpdateFileList":
@@ -68,6 +70,23 @@ func (s *DogfooterPrivate) GetVersion(ctx context.Context, req Payload, do UserO
 	return
 }
 func (s *DogfooterPrivate) GetChatId(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	res = Payload{
+		ChatId: do.ChatId,
+	}
+	return
+}
+func (s *DogfooterPrivate) UpdateChatId(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+	if len(req.ChatId) == 0 {
+		err = errors.New("'chat_id' is mandatory")
+		return
+	}
+
+	do.ChatId = req.ChatId
+
+	if err = do.UpdateChatId(); err != nil {
+		return
+	}
+
 	res = Payload{
 		ChatId: do.ChatId,
 	}

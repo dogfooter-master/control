@@ -5,7 +5,7 @@
     "port": "80"
   },
   "db": {
-    "hosts": "dogfooter_system_mongodb:27017",
+    "hosts": "pawpad_system_mongodb:27017",
     "database": "dogfooter",
     "username": "admin",
     "password": "hotice1234",
@@ -18,7 +18,7 @@
     "password": "Hotice1234!"
   },
   "redis": {
-    "hosts": "dogfooter_redis:6379",
+    "hosts": "pawpad_redis:6379",
     "websocket_channel": "ws"
   },
   "server": {

@@ -15,4 +15,4 @@ services:
          cpus: "1.0"
          memory: 1000M
     ports:
-      - 8090:8080
+      - 9000:8080

@@ -80,8 +80,13 @@ func (s *DogfooterPrivate) GetLoginPoint(ctx context.Context, req Payload, do Us
 	return
 }
 func (s *DogfooterPrivate) GetPoint(ctx context.Context, req Payload, do UserObject) (res Payload, err error) {
+
+	userPoint := 0
+	if userPoint, err = do.GetUserPointGNUBoard(do.Login.Account); err != nil {
+		return
+	}
 	res = Payload{
-		Point: do.Point,
+		Point: int32(userPoint),
 	}
 	return
 }

@@ -21,7 +21,6 @@ type UserObject struct {
 	Client       ClientObject       `bson:"client,omitempty"`
 	Avatar       FileObject         `bson:"avatar,omitempty"`
 	Status       string             `bson:"status,omitempty"`
-	Point        int32              `bson:"point,omitempty"`
 	ChatId       string             `bson:"chat_id,omitempty"`
 	Time         TimeLogObject      `bson:"time,omitempty"`
 	CustomConfig CustomConfigObject `bson:"custom_config,omitempty"`

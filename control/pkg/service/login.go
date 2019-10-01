@@ -4,6 +4,7 @@ import (
 	"crypto/sha1"
 	"errors"
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 	"unicode"
@@ -18,8 +19,9 @@ func (l *LoginObject) Auth(id string, pw string) (err error) {
 	cmp := LoginObject{
 		Account: l.Account,
 	}
-	cmp.EncodePassword(id, pw)
-	if strings.Compare(l.Password, cmp.Password) == 0 {
+	encoded := cmp.EncodePasswordGNUBoard(pw)
+	fmt.Fprintf(os.Stderr, "EncodedPassword: %v - %v\n", l.Password, encoded)
+	if strings.Compare(l.Password, encoded) == 0 {
 		return
 	}
 	return errors.New("password is incorrect")
@@ -62,4 +64,13 @@ func (l *LoginObject) ValidatePassword(pw string) (err error){
 
 func (l *LoginObject) EncodePassword(id string, pw string) {
 	l.Password = fmt.Sprintf("%x", sha1.Sum([]byte(pw + "?" + l.Account + "@" + id)))
+}
+func (l *LoginObject) EncodePasswordGNUBoard(plainPassword string) (encodedPassword string) {
+	sqlQuery := "SELECT password('" + plainPassword + "') as pass"
+	err := mySqlDB.QueryRow(sqlQuery).Scan(&encodedPassword)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "gnu db error: %v\n", err)
+		return
+	}
+	return
 }

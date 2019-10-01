@@ -1,18 +1,36 @@
 package service
 
 import (
+	"database/sql"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"gopkg.in/mgo.v2"
 	"time"
 )
 
 var mgoSession *mgo.Session
+var mySqlDB *sql.DB
 
 func init() {
 	err := initializeMongo()
 	if err != nil {
 		panic(err)
 	}
+
+	// sql.DB 객체 생성
+	dataSourceName := mySqlConfig.Username +
+		":" + mySqlConfig.Password +
+		"@tcp("+mySqlConfig.Hosts+")/"+
+		mySqlConfig.Database
+	mySqlDB, err = sql.Open("mysql", dataSourceName)
+	if err != nil {
+		panic(err)
+	}
+	go func() {
+		for range time.Tick(time.Second * 10) {
+			ConnectionCheck()
+		}
+	}()
 }
 
 func initializeMongo() (err error) {

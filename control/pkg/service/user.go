@@ -5,12 +5,16 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"os"
+	"strconv"
+	"time"
 )
 
 type UserObject struct {
 	Id           bson.ObjectId      `bson:"_id,omitempty"`
 	Name         string             `bson:"name,omitempty"`
 	Nickname     string             `bson:"nickname,omitempty"`
+	Email        string             `bson:"email,omitempty"`
 	Login        LoginObject        `bson:"login,omitempty"`
 	Relation     RelationObject     `bson:"relation,omitempty"`
 	SecretToken  SecretTokenObject  `bson:"secret_token,omitempty"`
@@ -21,6 +25,8 @@ type UserObject struct {
 	ChatId       string             `bson:"chat_id,omitempty"`
 	Time         TimeLogObject      `bson:"time,omitempty"`
 	CustomConfig CustomConfigObject `bson:"custom_config,omitempty"`
+	PcList       []PcObject         `bson:"pc_list,omitempty"`
+	GNUPoint     GNUPointObject     `bson:"gnu_point,omitempty"`
 }
 
 func (d *UserObject) Create() (err error) {
@@ -799,4 +805,68 @@ func (d *UserObject) SetDefaultCustomTag(value string) (defaultValue string, dst
 	}
 
 	return ro.CustomConfig.Tag.Apply(GetDefaultTag(), GetTagList())
+}
+func (d *UserObject) GetUserInformationGNUBoard(account string) (err error) {
+	d.Login = LoginObject{
+		Account: account,
+	}
+	var createTime string
+	sqlQuery := "SELECT mb_email, mb_password, mb_name, mb_nick, mb_datetime FROM g5_member WHERE mb_id = '" + account + "'"
+	err = mySqlDB.QueryRow(sqlQuery).Scan(
+		&d.Email,
+		&d.Login.Password,
+		&d.Name,
+		&d.Nickname,
+		&createTime)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "gnu db error: %v\n", err)
+		return
+	}
+	d.Time.CreateTime, _ = time.Parse("2006-01-02 15:04:05", createTime)
+	fmt.Fprintf(os.Stderr, "GetUserInformation: %#v\n", d)
+	return
+}
+func (d *UserObject) GetUserPointGNUBoard(account string) (point int, err error) {
+	d.Login = LoginObject{
+		Account: account,
+	}
+	sqlQuery := "SELECT mb_point FROM g5_member WHERE mb_id = '" + account + "'"
+	err = mySqlDB.QueryRow(sqlQuery).Scan(
+		&point)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "gnu db error: %v\n", err)
+		return
+	}
+	//fmt.Fprintf(os.Stderr, "GetUserPointGNUBoard: %#v\n", d)
+	return
+}
+func (d *UserObject) UpdatePointGNUBoard(point int, content string) (err error) {
+	var userPoint int
+	var newPoint int
+	if userPoint, err = d.GetUserPointGNUBoard(d.Login.Account); err != nil {
+		return
+	}
+	if userPoint == 0 && point < 0 {
+		fmt.Fprintf(os.Stderr, "at leat 0 point remain")
+		return
+	}
+	if userPoint+point < 0 {
+		newPoint = userPoint * -1
+	} else {
+		newPoint = point
+	}
+	now := time.Now().UTC().Add(9 * time.Hour).Format("2006-01-02 15:04:05")
+	//now := time.Now().UTC().Local().Format("2006-01-02")
+	uniqueId := "admin-" + bson.NewObjectId().Hex()[:12]
+	sqlQuery :=
+		"INSERT INTO " +
+			"g5_point( mb_id, po_content, po_point, po_expire_date, po_rel_table, po_rel_id, po_rel_action, po_datetime )" +
+			"VALUES ( '" + d.Login.Account + "', '" + content + "', " + strconv.Itoa(newPoint) + ", '"+ now +"', '@passive', 'admin', '" + uniqueId + "', '"+now+"' )"
+	fmt.Fprintf(os.Stderr, "UpdatePointGNUBoard: %#v\n", sqlQuery)
+	_, err = mySqlDB.Exec(sqlQuery)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "gnu db error: %v\n", err)
+		return
+	}
+	return
 }

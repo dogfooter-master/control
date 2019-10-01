@@ -74,6 +74,7 @@ type UpdateFileList struct {
 var serverHostConfig ServerConfig
 var clientHostConfig ClientConfig
 var mgoConfig DbConfig
+var mySqlConfig DbConfig
 var redisConfig RedisConfig
 var envOs string
 var timeConfig TimeConfig
@@ -129,6 +130,7 @@ func init() {
 	}
 	systemType = viper.GetString("type")
 	withoutFileServer = GetConfigWithoutFileServer()
+	viper.UnmarshalKey("mysql", &mySqlConfig)
 
 	//viper.Debug()
 }

@@ -7,9 +7,15 @@
   "db": {
     "hosts": "dogfooter_system_mongodb:27017",
     "database": "dogfooter",
-    "username": "",
-    "password": "",
+    "username": "admin",
+    "password": "hotice1234",
     "user_collection": "user"
+  },
+  "mysql": {
+    "hosts": "pawpad_wordpress_db:3306",
+    "database": "pawpad",
+    "username": "pawpad",
+    "password": "Hotice1234!"
   },
   "redis": {
     "hosts": "dogfooter_redis:6379",

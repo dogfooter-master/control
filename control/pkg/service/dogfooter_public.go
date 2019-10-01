@@ -42,47 +42,125 @@ func (s *DogfooterPublic) Service(ctx context.Context, req Payload) (res Payload
 	return
 }
 
+//func (s *DogfooterPublic) Login(ctx context.Context, req Payload) (res Payload, err error) {
+//	// 로그인 정보 체크
+//	if len(req.Account) == 0 {
+//		err = errors.New("'account' is mandatory")
+//		return
+//	}
+//	do := UserObject{
+//		Login: LoginObject{
+//			Account: req.Account,
+//		},
+//	}
+//	// 계정으로 검색
+//	if ro, err2 := do.Read(); err2 != nil {
+//		err = fmt.Errorf("%v", err2)
+//		return
+//	} else {
+//		// 인증
+//		if err = ro.Login.Auth(ro.Id.Hex(), req.Password); err != nil {
+//			return
+//		}
+//		if ro.Status == "active" && len(ro.SecretToken.Token) > 0 {
+//			do.SecretToken = ro.SecretToken
+//		} else {
+//			// 인증토큰 발급
+//			if err = do.SecretToken.GenerateAccessToken(); err != nil {
+//				return
+//			}
+//		}
+//		// 사용자 정보 업데이트
+//		do.Id = ro.Id
+//		do.Time.Login()
+//		if err = do.Update(); err != nil {
+//			return
+//		}
+//		// TODO: 필요한 정보들 더
+//		res = Payload{
+//			Account:       do.Login.Account,
+//			AccessToken:   do.SecretToken.Token,
+//			LastLoginTime: ro.Time.LoginTime.Format(time.RFC3339),
+//			UserId:        do.Id.Hex(),
+//		}
+//	}
+//
+//	return
+//}
+
 func (s *DogfooterPublic) Login(ctx context.Context, req Payload) (res Payload, err error) {
+	TimeTrack(time.Now(), GetFunctionName())
 	// 로그인 정보 체크
 	if len(req.Account) == 0 {
 		err = errors.New("'account' is mandatory")
 		return
 	}
-	do := UserObject{
-		Login: LoginObject{
-			Account: req.Account,
-		},
-	}
-	// 계정으로 검색
-	if ro, err2 := do.Read(); err2 != nil {
-		err = fmt.Errorf("%v", err2)
+	do := UserObject{}
+	err = do.GetUserInformationGNUBoard(req.Account)
+	if err != nil {
 		return
+	}
+	//do := UserObject{
+	//	Login: LoginObject{
+	//		Account: req.Account,
+	//	},
+	//}
+
+	// 계정으로 검색해서 없으면 새로 등록
+	ro, err := do.Read()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "New User!! %v\n", do.Login.Account)
+		do.Status = "active"
+		if err = do.Create(); err != nil {
+			return
+		}
+		ro = do
+	}
+	// 인증
+	if err = ro.Login.Auth(ro.Id.Hex(), req.Password); err != nil {
+		return
+	}
+
+	// 인증토큰이 있으면 주고 없으면 발급
+	if ro.Status == "active" && len(ro.SecretToken.Token) > 0 {
+		do.SecretToken = ro.SecretToken
 	} else {
-		// 인증
-		if err = ro.Login.Auth(ro.Id.Hex(), req.Password); err != nil {
+		if err = do.SecretToken.GenerateAccessToken(); err != nil {
 			return
 		}
-		if ro.Status == "active" && len(ro.SecretToken.Token) > 0 {
-			do.SecretToken = ro.SecretToken
-		} else {
-			// 인증토큰 발급
-			if err = do.SecretToken.GenerateAccessToken(); err != nil {
-				return
-			}
+	}
+	deviceAccessToken := ""
+	if len(req.MacAddress) > 0 {
+		// MacAddress 별로 토큰 발급
+		now := time.Now().UTC()
+		pc := PcObject{
+			MacAddress: req.MacAddress,
+			Name:       req.DeviceName,
+			CreateTime: now,
+			UpdateTime: now,
 		}
-		// 사용자 정보 업데이트
-		do.Id = ro.Id
-		do.Time.Login()
-		if err = do.Update(); err != nil {
+		if err = pc.AddedToUser(ro); err != nil {
 			return
 		}
-		// TODO: 필요한 정보들 더
-		res = Payload{
-			Account:       do.Login.Account,
-			AccessToken:   do.SecretToken.Token,
-			LastLoginTime: ro.Time.LoginTime.Format(time.RFC3339),
-			UserId:        do.Id.Hex(),
-		}
+		deviceAccessToken = pc.AccessToken.Token
+	}
+
+	// 사용자 정보 업데이트
+	do.Id = ro.Id
+	do.Time.Login()
+	if err = do.Update(); err != nil {
+		return
+	}
+	// TODO: 필요한 정보들 더
+	res = Payload{
+		Account:           ro.Login.Account,
+		Nickname:          ro.Nickname,
+		AccessToken:       do.SecretToken.Token,
+		DeviceAccessToken: deviceAccessToken,
+		DeviceName:        req.DeviceName,
+		LastLoginTime:     ro.Time.LoginTime.Format(time.RFC3339),
+		UserId:            ro.Id.Hex(),
+		Status:            ro.Status,
 	}
 
 	return

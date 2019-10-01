@@ -17,6 +17,9 @@ services:
     - 9003:8081
   system_mongodb:
     image: 'mongo:3.6'
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=hotice1234
     volumes:
       - type: volume
         source: dogfooter_system_db_volume

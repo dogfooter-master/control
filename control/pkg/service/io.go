@@ -12,6 +12,9 @@ type Payload struct {
 	Category            string                      `json:"category,omitempty"`
 	Service             string                      `json:"service,omitempty"`
 	Token               string                      `json:"token,omitempty"`
+	MacAddress          string                      `json:"mac_address,omitempty"`
+	DeviceName          string                      `json:"device_name,omitempty"`
+	DeviceAccessToken   string                      `json:"device_access_token,omitempty"`
 	AccessToken         string                      `json:"access_token,omitempty"`
 	AccessCode          string                      `json:"access_code,omitempty"`
 	Account             string                      `json:"account,omitempty"`
